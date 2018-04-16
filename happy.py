@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, url_for, request, render_template, redirect
 
+# @Time     : 2018/4/6
+# @Author   : WangL
+# @File     : happy.py
+
+from flask import Flask, url_for, request, render_template, redirect
+from data_factory import DataFactory
 
 app = Flask(__name__)
 
@@ -29,6 +34,8 @@ def show_post(post_id):
 def login():
     if request.method == 'POST':
         name = request.form['query']
+        data_info = DataFactory()
+        data_info.query_img(name)
         return redirect(url_for('show_user_profile', user_name=name))
     else:
         return render_template('m.html')
