@@ -6,7 +6,7 @@
 
 from flask import Flask, url_for, request, render_template, redirect
 from data_factory import DataFactory
-
+import socket
 app = Flask(__name__)
 
 
@@ -36,9 +36,10 @@ def login():
         name = request.form['query']
         data_info = DataFactory()
         data_info.query_img(name)
-        return redirect(url_for('show_user_profile', user_name=name))
+        return render_template('m.html')
     else:
         return render_template('m.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
+    a = socket.socket()
